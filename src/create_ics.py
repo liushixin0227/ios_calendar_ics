@@ -13,32 +13,71 @@ class CreatIcs(object):
         self.title_name = input_title_name
         # definition ICS file header
         self.ics_header_string = "BEGIN:VCALENDAR\n" \
-                                 "METHOD:PUBLISH\n" \
                                  "VERSION:2.0\n" \
                                  "X-WR-CALNAME:{title_name}\n" \
-                                 "PRODID:-//Apple Inc.//Mac OS X 10.12//EN\n" \
-                                 "X-APPLE-CALENDAR-COLOR:#FC4208\n" \
-                                 "X-WR-TIMEZONE:Asia/Shanghai\n" \
-                                 "CALSCALE:GREGORIAN\n" \
+                                 "X-APPLE-CALENDAR-COLOR:#1BADF8\n" \
+                                 "X-WR-CALDESC:\n" \
                                  "BEGIN:VTIMEZONE\n" \
                                  "TZID:Asia/Shanghai\n" \
+                                 "X-LIC-LOCATION:Asia/Shanghai\n" \
                                  "BEGIN:STANDARD\n" \
-                                 "TZOFFSETFROM:+0900\n" \
-                                 "RRULE:FREQ=YEARLY;UNTIL=19910914T150000Z;BYMONTH=9;BYDAY=3SU\n" \
-                                 "DTSTART:19890917T000000\n" \
-                                 "TZNAME:GMT+8\n" \
+                                 "DTSTART:19010101T000000\n" \
+                                 "RDATE:19010101T000000\n" \
+                                 "TZNAME:CST\n" \
+                                 "TZOFFSETFROM:+080543\n" \
                                  "TZOFFSETTO:+0800\n" \
                                  "END:STANDARD\n" \
                                  "BEGIN:DAYLIGHT\n" \
+                                 "DTSTART:19400601T000000\n" \
+                                 "RDATE:19400601T000000\n" \
+                                 "RDATE:19410315T000000\n" \
+                                 "RDATE:19420131T000000\n" \
+                                 "RDATE:19460515T000000\n" \
+                                 "RDATE:19470415T000000\n" \
+                                 "RDATE:19860504T020000\n" \
+                                 "TZNAME:CDT\n" \
                                  "TZOFFSETFROM:+0800\n" \
-                                 "DTSTART:19910414T000000\n" \
-                                 "TZNAME:GMT+8\n" \
                                  "TZOFFSETTO:+0900\n" \
-                                 "RDATE:19910414T000000\n" \
+                                 "END:DAYLIGHT\n" \
+                                 "BEGIN:STANDARD\n" \
+                                 "DTSTART:19401012T235959\n" \
+                                 "RDATE:19401012T235959\n" \
+                                 "RDATE:19411101T235959\n" \
+                                 "RDATE:19450901T235959\n" \
+                                 "RDATE:19460930T235959\n" \
+                                 "RDATE:19471031T235959\n" \
+                                 "RDATE:19480930T235959\n" \
+                                 "RDATE:19490528T000000\n" \
+                                 "TZNAME:CST\n" \
+                                 "TZOFFSETFROM:+0900\n" \
+                                 "TZOFFSETTO:+0800\n" \
+                                 "END:STANDARD\n" \
+                                 "BEGIN:DAYLIGHT\n" \
+                                 "DTSTART:19480501T000000\n" \
+                                 "RRULE:FREQ=YEARLY;UNTIL=19490430T160000Z;BYMONTH=5\n" \
+                                 "TZNAME:CDT\n" \
+                                 "TZOFFSETFROM:+0800\n" \
+                                 "TZOFFSETTO:+0900\n" \
+                                 "END:DAYLIGHT\n" \
+                                 "BEGIN:STANDARD\n" \
+                                 "DTSTART:19860914T020000\n" \
+                                 "RRULE:FREQ=YEARLY;UNTIL=19910914T170000Z;BYMONTH=9;BYMONTHDAY=11,12,13,14\n " \
+                                 ",15,16,17;BYDAY=SU\n" \
+                                 "TZNAME:CST\n" \
+                                 "TZOFFSETFROM:+0900\n" \
+                                 "TZOFFSETTO:+0800\n" \
+                                 "END:STANDARD\n" \
+                                 "BEGIN:DAYLIGHT\n" \
+                                 "DTSTART:19870412T020000\n" \
+                                 "RRULE:FREQ=YEARLY;UNTIL=19910413T180000Z;BYMONTH=4;BYMONTHDAY=11,12,13,14\n " \
+                                 ",15,16,17;BYDAY=SU\n" \
+                                 "TZNAME:CDT\n" \
+                                 "TZOFFSETFROM:+0800\n" \
+                                 "TZOFFSETTO:+0900\n" \
                                  "END:DAYLIGHT\n" \
                                  "END:VTIMEZONE\n" \
                                  "{eventinfo}\n" \
-                                 "END:VCALENDAR"
+                                 "END:VCALENDAR\n"
 
     def process(self, data_dict_list):
         """
@@ -74,7 +113,7 @@ class CreatIcs(object):
             eventString += "\nSEQUENCE:0\nBEGIN:VALARM\nX-WR-ALARMUID:" + str(uuid.uuid3(uuid.NAMESPACE_DNS, 'ALARM'))
             eventString += "\nUID:" + str(uuid.uuid3(uuid.NAMESPACE_DNS, 'VALARM'))
             eventString += "\nTRIGGER:" + "-P1D"
-            #todo:增加观赛地址和观赛链接:
+            # todo:增加观赛地址和观赛链接:
             # eventString += "\nLOCATION:" + {Address}
             # eventString += "\nURL;VALUE=URI:" + {URL}
             eventString += "\nDESCRIPTION:事件提醒\nACTION:DISPLAY\nEND:VALARM\nEND:VEVENT"
